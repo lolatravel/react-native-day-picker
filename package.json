@@ -1,6 +1,6 @@
 {
-  "name": "react-native-day-picker",
-  "version": "1.1.6",
+  "name": "lola.react-native-day-picker",
+  "version": "1.1.7",
   "description": "react-native-day-picker is a simple calendar which allows you to select date range. Suites for android and ios",
   "main": "index.js",
   "scripts": {
