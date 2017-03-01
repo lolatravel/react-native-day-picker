@@ -197,6 +197,7 @@ export default class Calendar extends React.Component {
 
 		if (!selectFrom) {
 			selectFrom = value;
+			selectTo = null;
 		} else if (!selectTo) {
 			if (value > selectFrom) {
 				selectTo = value;
@@ -227,7 +228,7 @@ export default class Calendar extends React.Component {
 
 		this.months = months;
 
-		this.props.onSelectionChange(value, this.prevValue);
+		this.props.onSelectionChange(selectFrom, selectTo);
 		this.prevValue = value;
 
 		this.setState({
