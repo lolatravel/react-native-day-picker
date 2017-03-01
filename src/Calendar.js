@@ -229,7 +229,6 @@ export default class Calendar extends React.Component {
 		this.months = months;
 
 		this.props.onSelectionChange(selectFrom, selectTo);
-		this.prevValue = value;
 
 		this.setState({
 			dataSource: this.state.dataSource.cloneWithRows(months)
