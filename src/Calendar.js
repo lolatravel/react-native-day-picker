@@ -97,7 +97,8 @@ export default class Calendar extends React.Component {
 			PropTypes.object,
 			PropTypes.number
 		]),
-		useCircleMarkers: PropTypes.bool
+		useCircleMarkers: PropTypes.bool,
+		showScrollIndicator: PropTypes.bool
 	};
 
 	constructor(props) {
@@ -181,7 +182,7 @@ export default class Calendar extends React.Component {
 		}
 
 		var lastDate = new Date(month);
-		lastDate.setDate(lastDate.getDate() + delta);
+		lastDate.setDate();
 
 		var allDates = [];
 		while (startDate <= lastDate) {
@@ -254,8 +255,9 @@ export default class Calendar extends React.Component {
 	}
 
 	render() {
-		let {style, isFutureDate} = this.props;
+		let {style, isFutureDate, showScrollIndicator} = this.props;
 		let directionStyles = {};
+		let scrollStyles = true;
 
 		if (!isFutureDate) {
 			directionStyles = {
@@ -263,10 +265,15 @@ export default class Calendar extends React.Component {
 			}
 		}
 
+		if(!showScrollIndicator){
+			scrollStyles = false;
+		}
+
 		return (
 			<ListView
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}
+				showsVerticalScrollIndicator={scrollStyles}
 				style={[styles.listViewContainer, directionStyles, style]}
 				dataSource={this.state.dataSource}
 				renderRow={(month) => {
