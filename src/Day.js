@@ -85,10 +85,12 @@ export default class Day extends React.Component {
 		return (
 			<TouchableOpacity
 				activeOpacity={disabled ? 1 : 0.5}
-				style={[styles.common, {backgroundColor: backColor, width: width / 7, height: width / 7},
-					this._isCircle(borderRadius, borderColor)]}
+				style={[styles.common, {width: width / 7, height: width / 7}, this._renderCircleBg(position)]}
 				onPress={onPress}>
-				<Text style={{color: textColor}}>{date.getDate()}</Text>
+				<View style={[{backgroundColor: backColor}, this._isCircle(borderRadius, borderColor), {width: width / 7, height: width / 7}, {justifyContent: 'center',
+				alignItems: 'center'}]}>
+					<Text style={{color: textColor}}>{date.getDate()}</Text>
+				</View>
 			</TouchableOpacity>
 		);
 	}
