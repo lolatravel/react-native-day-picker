@@ -4,7 +4,8 @@ import React    from 'react';
 import {
 	StyleSheet,
 	TouchableOpacity,
-	Text
+	Text,
+	View
 }               from 'react-native';
 
 export default class Day extends React.Component {
