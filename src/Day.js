@@ -19,6 +19,26 @@ export default class Day extends React.Component {
 		}
 	}
 
+	_renderCircleBg(position) {
+		let selectedStyle;
+
+		if (position === 'selectFrom') {
+			selectedStyle = {
+				borderTopLeftRadius: 30,
+				borderBottomLeftRadius: 30
+			}
+		}else if (position === 'selectTo') {
+			selectedStyle = {
+				borderTopRightRadius: 30,
+				borderBottomRightRadius: 30
+			}
+		}
+
+		if (this.props.useCircleMarkers){
+			return [{backgroundColor: this.props.dayInRangeBackColor}, selectedStyle];
+		}
+	}
+
 	render() {
 		let {date, status, disabled, onDayPress, width} = this.props;
 		let onPress, textColor, backColor, borderColor, borderRadius;
