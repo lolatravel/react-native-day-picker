@@ -30,7 +30,7 @@ export default class Month extends React.Component {
 		let updatedWidth = Math.trunc(width / 7);
 
 		if(showFullYear){
-			monthHeader = monthsLocale[days[15].date.getMonth()] + ' ' + days[15].date.getFullYear().toUpperCase();
+			monthHeader = (monthsLocale[days[15].date.getMonth()]).toUpperCase() + ' ' + days[15].date.getFullYear();
 		}else {
 			monthHeader = monthsLocale[days[15].date.getMonth()].toUpperCase();
 		}
