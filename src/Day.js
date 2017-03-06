@@ -50,6 +50,11 @@ export default class Day extends React.Component {
 		let onPress, textColor, backColor, borderColor, borderRadius;
 
 		let updatedWidth = Math.trunc(width / 7);
+		let checkedWidth = updatedWidth % 2;
+
+		if(checkedWidth > 0){
+			updatedWidth = updatedWidth - 1;
+		}
 
 		if (disabled) {
 			status = 'disabled';
