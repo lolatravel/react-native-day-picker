@@ -295,6 +295,11 @@ export default class Calendar extends React.Component {
 				showsVerticalScrollIndicator={scrollStyles}
 				style={[styles.listViewContainer, directionStyles, style]}
 				dataSource={this.state.dataSource}
+				renderFooter={() => {
+					return (
+						<View style={styles.footer} />
+					)
+				}}
 				renderRow={(month) => {
 					return (
 						<Month
@@ -315,5 +320,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		alignSelf: 'center',
 	},
-	month: {}
+	month: {},
+	footer: {
+		height: 150,
+		position: 'relative',
+		width: 60
+	}
 });
