@@ -221,6 +221,7 @@ export default class Calendar extends React.Component {
 		months = months.map((month) => {
 			return month.map((day) => {
 				let rangePosition = null;
+				let hideBgHighlight = false;
 
 				if(day.date === selectFrom){
 					rangePosition = 'selectFrom';
@@ -228,12 +229,16 @@ export default class Calendar extends React.Component {
 					rangePosition = 'selectTo';
 				}
 
+				if(selectTo === null){
+					hideBgHighlight =  true;
+				}
 
 				return {
 					date: day.date,
 					status: this.getStatus(day.date, selectFrom, selectTo),
 					disabled: day.disabled,
-					position: rangePosition
+					position: rangePosition,
+					hideBgHighlight: hideBgHighlight
 				}
 			})
 		});

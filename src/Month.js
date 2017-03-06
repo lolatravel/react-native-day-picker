@@ -27,6 +27,7 @@ export default class Month extends React.Component {
 		} = this.props;
 
 	 	let monthHeader;
+		let updatedWidth = Math.trunc(width / 7);
 
 		if(showFullYear){
 			monthHeader = monthsLocale[days[15].date.getMonth()] + ' ' + days[15].date.getFullYear().toUpperCase;
@@ -48,8 +49,8 @@ export default class Month extends React.Component {
 								key={i}
 								style={[styles.weekDay, {
 									borderColor: headerSepColor,
-									width: width / 7,
-									height: width / 7
+									width: updatedWidth,
+									height: updatedWidth
 								}]}
 							>
 								<Text style={[{color: bodyTextColor}, weekTextStyles]}>{dayName}</Text>
@@ -65,7 +66,8 @@ export default class Month extends React.Component {
 								status={day.status}
 								date={day.date}
 								onDayPress={changeSelection}
-								position={day.position}
+								position={day.position},
+								hideBgHighlight={day.hideBgHighlight}
 							/>
 						);
 					})}

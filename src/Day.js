@@ -20,8 +20,9 @@ export default class Day extends React.Component {
 		}
 	}
 
-	_renderCircleBg(position) {
+	_renderCircleBg(position, hide) {
 		let selectedStyle;
+		let bgColor = this.props.dayInRangeBackColor;
 
 		if (position === 'selectFrom') {
 			selectedStyle = {
@@ -35,14 +36,20 @@ export default class Day extends React.Component {
 			}
 		}
 
+		if(hide){
+			bgColor = 'transparent';
+		}
+
 		if (this.props.useCircleMarkers){
-			return [{backgroundColor: this.props.dayInRangeBackColor}, selectedStyle];
+			return [{backgroundColor: bgColor}, selectedStyle];
 		}
 	}
 
 	render() {
-		let {date, status, disabled, onDayPress, width, position} = this.props;
+		let {date, status, disabled, onDayPress, width, position, hideBgHighlight} = this.props;
 		let onPress, textColor, backColor, borderColor, borderRadius;
+
+		let updatedWidth = Math.trunc(width / 7);
 
 		if (disabled) {
 			status = 'disabled';
@@ -86,9 +93,9 @@ export default class Day extends React.Component {
 		return (
 			<TouchableOpacity
 				activeOpacity={disabled ? 1 : 0.5}
-				style={[styles.common, {width: width / 7, height: width / 7}, this._renderCircleBg(position)]}
+				style={[styles.common, {width: updatedWidth, height: updatedWidth}, this._renderCircleBg(position, hideBgHighlight)]}
 				onPress={onPress}>
-				<View style={[{backgroundColor: backColor}, this._isCircle(borderRadius, borderColor), {width: width / 7, height: width / 7}, {justifyContent: 'center',
+				<View style={[{backgroundColor: backColor}, this._isCircle(borderRadius, borderColor), {width: updatedWidth, height: updatedWidth}, {justifyContent: 'center',
 				alignItems: 'center'}]}>
 					<Text style={{color: textColor}}>{date.getDate()}</Text>
 				</View>
