@@ -138,14 +138,23 @@ export default class Calendar extends React.Component {
 
 		for (var i = 0; i < count; i++) {
 			var month = this.getDates(monthIterator, startFromMonday);
+			let rangePosition = null;
 
 			months.push(month.map((day) => {
 				dateUTC = Date.UTC(day.getYear(), day.getMonth(), day.getDate());
+
+				if(this.selectFrom.toDateString() === day.toDateString()){
+					rangePosition = 'selectFrom';
+				}else if(this.selectTo.toDateString() === day.toDateString()){
+					rangePosition = 'selectTo';
+				}
+
 				return {
 					date: day,
 					status: this.getStatus(day, this.selectFrom, this.selectTo),
 					disabled: day.getMonth() !== monthIterator.getMonth()
-					|| ((isFutureDate) ? startUTC > dateUTC : startUTC < dateUTC)
+					|| ((isFutureDate) ? startUTC > dateUTC : startUTC < dateUTC),
+					position: rangePosition
 				}
 			}));
 
@@ -211,10 +220,20 @@ export default class Calendar extends React.Component {
 
 		months = months.map((month) => {
 			return month.map((day) => {
+				let rangePosition = null;
+
+				if(day.date === selectFrom){
+					rangePosition = 'selectFrom';
+				}else if(day.date === selectTo){
+					rangePosition = 'selectTo';
+				}
+
+
 				return {
 					date: day.date,
 					status: this.getStatus(day.date, selectFrom, selectTo),
-					disabled: day.disabled
+					disabled: day.disabled,
+					position: rangePosition
 				}
 			})
 		});
