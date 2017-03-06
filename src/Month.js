@@ -65,6 +65,7 @@ export default class Month extends React.Component {
 								status={day.status}
 								date={day.date}
 								onDayPress={changeSelection}
+								position={day.position}
 							/>
 						);
 					})}
