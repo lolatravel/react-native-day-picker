@@ -6,6 +6,7 @@ import React, {
 import {
 	ListView,
 	StyleSheet,
+	View
 }               from 'react-native';
 
 import Month    from './Month';
