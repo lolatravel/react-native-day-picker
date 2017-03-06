@@ -40,7 +40,7 @@ export default class Day extends React.Component {
 	}
 
 	render() {
-		let {date, status, disabled, onDayPress, width} = this.props;
+		let {date, status, disabled, onDayPress, width, position} = this.props;
 		let onPress, textColor, backColor, borderColor, borderRadius;
 
 		if (disabled) {
