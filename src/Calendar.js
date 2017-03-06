@@ -191,7 +191,7 @@ export default class Calendar extends React.Component {
 		}
 
 		var lastDate = new Date(month);
-		lastDate.setDate();
+		lastDate.setDate(lastDate.getDate() + delta);
 
 		var allDates = [];
 		while (startDate <= lastDate) {
