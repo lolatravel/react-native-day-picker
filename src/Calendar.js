@@ -121,6 +121,24 @@ export default class Calendar extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		let date = new Date();
+		let dayNum = this.props.selectFrom.getDate();
+		let monthDifference = this.props.selectFrom.getMonth() - date.getMonth();
+
+		// selected month - this month * height of calendar
+		// need to account for long months
+		let scrollDistance = (monthDifference * 300) + (monthDifference * 30); // estimated height + num month headers * height
+
+		if(dayNum >= 15) {
+			let scrollOffset = (dayNum - 15) * 20;
+			scrollDistance = scrollDistance + scrollOffset
+		}
+
+		this.refs.calendar.scrollTo({x: 0, y: scrollDistance, animated: true})
+
+	}
+
 	rowHasChanged(r1, r2) {
 		for (var i = 0; i < r1.length; i++) {
 			if (r1[i].status !== r2[i].status && !r1[i].disabled) {
@@ -296,6 +314,7 @@ export default class Calendar extends React.Component {
 
 		return (
 			<ListView
+				ref={calendar}
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}
 				showsVerticalScrollIndicator={scrollStyles}
