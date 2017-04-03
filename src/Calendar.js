@@ -15,7 +15,7 @@ import Month    from './Month';
 export default class Calendar extends React.Component {
 	static defaultProps = {
 		startDate: new Date(),
-		monthsCount: 24,
+		monthsCount: 12,
 		onSelectionChange: () => {
 		},
 
@@ -126,16 +126,20 @@ export default class Calendar extends React.Component {
 		let dayNum = this.props.selectFrom.getDate();
 		let monthDifference = this.props.selectFrom.getMonth() - date.getMonth();
 
+		if(monthDifference < 0) {
+			monthDifference = 12 - Math.abs(monthDifference);
+		}
+
 		// selected month - this month * height of calendar
 		// need to account for long months
-		let scrollDistance = (monthDifference * 300) + (monthDifference * 30); // estimated height + num month headers * height
+		let scrollDistance = (monthDifference * 320) + (monthDifference * 30); // estimated height + num month headers * height
 
 		if(dayNum >= 15) {
 			let scrollOffset = (dayNum - 15) * 20;
 			scrollDistance = scrollDistance + scrollOffset
 		}
 
-		this.refs.calendar.scrollTo({x: 0, y: scrollDistance, animated: true})
+		this.refs.calendar.scrollTo({x: 0, y: scrollDistance, animated: true});
 
 	}
 
